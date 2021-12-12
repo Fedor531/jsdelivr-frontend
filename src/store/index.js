@@ -1,12 +1,12 @@
 import { createStore } from 'vuex';
-import { postModule } from './postModule';
-import { packageModule } from './packageModule'
-import { loaderModule } from './loaderModule';
+import { xpackage } from './modules/package'
+import { loader } from './modules/loader';
+import { modal } from './modules/modal';
 
 export default createStore({
     modules: {
-        loader: loaderModule,
-        post: postModule,
-        package: packageModule
+        loader,
+        package: xpackage,
+        modal
     }
 })

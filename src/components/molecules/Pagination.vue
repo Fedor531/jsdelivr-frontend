@@ -1,5 +1,5 @@
 <template>
-    <nav aria-label="...">
+    <div aria-label="...">
         <ul class="pagination pagination-sm">
             <li class="page-item"
                 :class="{'active': +$route.query.page === pageNumber}"
@@ -7,19 +7,17 @@
                 :key="pageNumber"
                 @click="setPage(pageNumber)"
             >
-                <a class="page-link"
-                   href="#"
-                >
+                <a class="page-link" href="#">
                     {{ pageNumber }}
                 </a>
             </li>
         </ul>
-    </nav>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'Pagintaion',
+    name: 'Pagination',
     props: {
         totalPages: {
             type: Number,
@@ -29,7 +27,7 @@ export default {
     methods: {
         setPage(pageNumber) {
             const query = { ...this.$route.query, page: pageNumber };
-            this.$router.push({ path: this.$route.path, query})
+            this.$router.push({ path: this.$route.path, query })
         }
     }
 }

@@ -1,31 +1,20 @@
 <template>
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                <svg class="bi" width="30" height="24">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-            <span class="text-muted">© 2021 Fedor Perereverzev</span>
-        </div>
+    <footer class="py-3 mb-3 border-top">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="text-muted">© 2021
+                    <a href="https://pereverzev.pro/" target="_blank">
+                        Fedor Perereverzev
+                    </a>
+                </span>
+            </div>
 
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#">
-                <svg class="bi" width="24" height="24">
-                    <use xlink:href="#twitter"></use>
-                </svg>
-            </a></li>
-            <li class="ms-3"><a class="text-muted" href="#">
-                <svg class="bi" width="24" height="24">
-                    <use xlink:href="#instagram"></use>
-                </svg>
-            </a></li>
-            <li class="ms-3"><a class="text-muted" href="#">
-                <svg class="bi" width="24" height="24">
-                    <use xlink:href="#facebook"></use>
-                </svg>
-            </a></li>
-        </ul>
+            <div class="col-md-4 d-flex justify-content-end align-items-center">
+                <a class="footer-logo" href="https://github.com/Fedor531" target="_blank">
+                    <img src='../../assets/images/github-logo.svg' alt='Github'/>
+                </a>
+            </div>
+        </div>
     </footer>
 </template>
 
@@ -35,6 +24,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.footer-logo {
+    width: 30px;
+    height: 30px;
 
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
 </style>

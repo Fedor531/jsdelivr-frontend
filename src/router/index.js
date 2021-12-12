@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from '../views/Index'
-import IndexVuex from '../views/IndexVuex'
-import About from '../views/About';
-import PostIdPage from '../views/PostIdPage'
 
 const routes = [
     {
@@ -11,18 +8,9 @@ const routes = [
         component: Index
     },
     {
-        path: '/store',
-        name: 'IndexVuex',
-        component: IndexVuex
-    },
-    {
-        path: '/:id',
-        component: PostIdPage
-    },
-    {
         path: '/about',
         name: 'About',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        component: () => import('../views/About.vue')
     }
 ]
 

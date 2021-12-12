@@ -1,4 +1,4 @@
-export const loaderModule = {
+export const loader = {
     state: () => ({
         loading: false
     }),
@@ -8,10 +8,12 @@ export const loaderModule = {
             return state.loading;
         },
     },
+
     mutations: {
         setLoading(state, bool) {
             state.loading = bool;
         },
     },
+
     namespaced: true
 }

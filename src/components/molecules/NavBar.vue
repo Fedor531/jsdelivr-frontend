@@ -5,7 +5,7 @@
                 v-for="item in navbar"
                 :key="item.id"
             >
-                <a @click="$router.push(item.path)"
+                <router-link :to="item.path"
                    class="nav-link"
                    href=""
                    :class="{
@@ -13,7 +13,7 @@
                            }"
                 >
                     {{ item.title }}
-                </a>
+                </router-link>
             </li>
         </ul>
     </nav>

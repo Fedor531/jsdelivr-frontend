@@ -1,7 +1,7 @@
 <template>
-    <a class="navbar-brand logo" @click="$router.push('/')" href="">
+    <h1 class="navbar-brand logo">
         jsdelivr
-    </a>
+    </h1>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ export default {
 
 <style scoped>
 .logo {
+    font-size: 1.5rem;
     color: cornflowerblue !important;
 }
 </style>

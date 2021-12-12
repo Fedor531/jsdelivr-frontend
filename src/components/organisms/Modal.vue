@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-if="show" @click="closeModal">
+    <div class="modal" v-show="showModal" @click="closeModal">
         <div @click.stop class="modal__content">
             <slot/>
         </div>
@@ -7,11 +7,25 @@
 </template>
 
 <script>
-import toggleMixin from '../../mixins/toggleMixin';
+import { mapMutations } from 'vuex';
 
 export default {
     name: 'Modal',
-    mixins: [toggleMixin]
+    props: {
+        showModal: {
+            type: Boolean,
+            default: false
+        }
+    },
+    methods: {
+        ...mapMutations({
+            setShowModal: 'modal/setShowModal'
+        }),
+
+        closeModal() {
+            this.setShowModal({ show: false });
+        }
+    }
 }
 </script>
 
@@ -32,6 +46,7 @@ export default {
         margin: auto;
         min-height: 50px;
         min-width: 300px;
+        max-width: 550px;
     }
 }
 </style>

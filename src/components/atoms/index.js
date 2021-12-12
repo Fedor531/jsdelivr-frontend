@@ -1,9 +1,11 @@
 import Button from './Button';
 import Input from './Input';
-import Select from './Select';
+import Loader from './Loader';
+import Logo from './Logo';
 
 export default [
     Button,
     Input,
-    Select
+    Loader,
+    Logo
 ]

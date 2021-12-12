@@ -1,22 +1,33 @@
 <template>
-    <Loader v-show="loading"/>
-    <Pagintaion v-if="packages.length"
-                :totalPages="totalPages"
-                :activePage="activePage"
-    />
-    <ResultTable v-if="packages.length" :packages="packages"/>
+    <transition name="fade" mode="out-in">
+        <div v-if="packages.length" :key="searchId">
+            <Pagination :totalPages="totalPages"/>
+            <transition name="fade" mode="out-in">
+                <ResultTable :packages="packages" :key="$route.query.page"/>
+            </transition>
+        </div>
+        <div v-else>
+            {{ alertText }}
+        </div>
+    </transition>
 </template>
 
 <script>
 import ResultTable from '../components/organisms/ResultTable';
 import Loader from '../components/atoms/Loader';
-import Pagintaion from '../components/molecules/Pagintaion';
+import Pagination from '../components/molecules/Pagination';
 
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'Index',
-    components: { Pagintaion, Loader, ResultTable },
+    components: { Pagination, Loader, ResultTable },
+
+    data() {
+        return {
+            alertText: 'Начните искать'
+        }
+    },
 
     methods: {
         ...mapActions({
@@ -27,6 +38,10 @@ export default {
     created() {
         if (this.$route.query.q) {
             this.searchPackages();
+
+            if (!this.$route.query.page) {
+                this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: 1 } });
+            }
         }
     },
 
@@ -34,8 +49,7 @@ export default {
         ...mapGetters({
             packages: 'package/getPackages',
             totalPages: 'package/getTotalPages',
-            activePage: 'package/getActivePage',
-            loading: 'loader/getLoading',
+            searchId: 'package/getSearchId'
         })
     }
 }

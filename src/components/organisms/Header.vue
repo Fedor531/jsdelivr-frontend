@@ -1,23 +1,22 @@
 <template>
     <header class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <Logo />
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <NavBar :navbar="navbar"/>
-                <SearchForm />
-            </div>
+        <div class="container d-flex">
+            <Logo class="me-auto"/>
+            <NavBar v-if="false" :navbar="navbar"/>
+            <Loader class="header-loader" v-show="loading"/>
+            <SearchForm/>
         </div>
     </header>
 </template>
 
 <script>
 import NavBar from '../molecules/NavBar';
-import Logo from '../atoms/Logo';
-import SearchForm from "../molecules/SearchForm";
+import SearchForm from '../molecules/SearchForm';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'Header',
-    components: { SearchForm, Logo, NavBar },
+    components: { SearchForm, NavBar },
     data() {
         return {
             navbar: [
@@ -33,10 +32,17 @@ export default {
                 }
             ]
         }
+    },
+    computed: {
+        ...mapGetters({
+            loading: 'loader/getLoading',
+        })
     }
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.header-loader {
+    margin-right: 12px;
+}
 </style>
