@@ -14,3 +14,6 @@ npm run serve
 ```
 npm run build
 ```
+
+
+https://fedor531.github.io/jsdelivr-frontend/
