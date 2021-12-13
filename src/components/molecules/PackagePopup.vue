@@ -1,27 +1,27 @@
 <template>
     <div class="package-popup">
-        <h3>{{ packageItem.name }}</h3>
+        <h3>{{ data.name }}</h3>
         <h4>Описание</h4>
-        <div>{{ packageItem.description }}</div>
-        <div>{{ packageItem.date }}</div>
-        <div><a :href="packageItem.author?.url">{{ packageItem.author?.name }}</a></div>
-        <div>{{ packageItem.version }}</div>
+        <div>{{ data.description }}</div>
+        <div>{{ data.date }}</div>
+        <div><a :href="data.author?.url">{{ data.author?.name }}</a></div>
+        <div>{{ data.version }}</div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: 'PackagePopup',
-    props: {
-        packageItem: {
-            type: Object,
-            required: true
-        }
+    computed: {
+        ...mapGetters({
+            data: 'modal/getModalData'
+        })
     }
 }
 </script>
 
 <style scoped lang="scss">
-.package-popup {
-}
+
 </style>

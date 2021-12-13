@@ -13,10 +13,10 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex';
 import ResultTable from '../molecules/ResultTable';
 import Loader from '../atoms/Loader';
 import Pagination from '../molecules/Pagination';
-import { mapGetters, mapState } from 'vuex';
 
 export default {
     name: 'SearchResult',
@@ -26,11 +26,7 @@ export default {
         ...mapState({
             alertText: state => state.package.alertText,
         }),
-        ...mapGetters({
-            packages: 'package/getPackages',
-            totalPages: 'package/getTotalPages',
-            searchId: 'package/getSearchId'
-        })
+        ...mapGetters('package', ['packages', 'totalPages', 'searchId'])
     }
 }
 </script>

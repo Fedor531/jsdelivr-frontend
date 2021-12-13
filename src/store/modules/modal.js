@@ -1,25 +1,26 @@
 export const modal = {
     state: () => ({
-        showModal: false,
-        item: {}
+        modalData: {},
+        modalComponent: []
     }),
 
     getters: {
-        getShowModal(state) {
-            return state.showModal;
+        getModalComponent(state) {
+            return state.modalComponent[state.modalComponent.length - 1];
         },
-        getPackageItem(state) {
-            return state.item;
+        getModalData(state) {
+            return state.modalData;
         },
     },
 
     mutations: {
-        setShowModal(state, { show, item }) {
-            if (item) {
-                state.item = item;
-            }
-            state.showModal = show;
+        openModal(state, { componentName, modalData }) {
+            state.modalComponent.push(componentName);
+            state.modalData = modalData;
         },
+        closeModal(state) {
+            state.modalComponent.splice(state.modalComponent.length - 1, 1)
+        }
     },
 
     namespaced: true

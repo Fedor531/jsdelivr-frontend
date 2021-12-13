@@ -1,5 +1,5 @@
 <template>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
+    <header class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="container d-flex">
             <Logo class="me-auto"/>
             <NavBar v-if="false" :navbar="navbar"/>
@@ -35,13 +35,18 @@ export default {
     },
     computed: {
         ...mapGetters({
-            loading: 'loader/getLoading',
+            loading: 'loader/getLoading'
         })
     }
 }
 </script>
 
 <style scoped lang="scss">
+.navbar {
+    background: #fff;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .08);
+}
+
 .header-loader {
     margin-right: 12px;
 }

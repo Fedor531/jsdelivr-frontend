@@ -10,7 +10,7 @@
         </td>
         <td class="column version">{{ item.version }}</td>
         <td>
-            <Button @click="openModal(item)">
+            <Button @click="open(item)">
                 Подробнее
             </Button>
         </td>
@@ -37,11 +37,15 @@ export default {
 
     methods: {
         ...mapMutations({
-            showModal: 'modal/setShowModal'
+            openModal: 'modal/openModal'
         }),
 
-        openModal(item) {
-            this.showModal({ show: true, item })
+        open(item) {
+            const modalOptions = {
+                componentName: 'PackagePopup',
+                modalData: item
+            };
+            this.openModal(modalOptions)
         }
     }
 }

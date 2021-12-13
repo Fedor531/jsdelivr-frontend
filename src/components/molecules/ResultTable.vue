@@ -54,6 +54,9 @@ export default {
 
 <style scoped lang="scss">
 .table {
-    border: 1px solid #c3c3c3;
+    background: #fff;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .08);
+    border-radius: 5px !important;
+    overflow: hidden;
 }
 </style>

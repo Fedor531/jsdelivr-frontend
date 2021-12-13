@@ -1,31 +1,33 @@
 <template>
-    <div class="modal" v-show="showModal" @click="closeModal">
-        <div @click.stop class="modal__content">
-            <slot/>
+    <transition name="fade">
+        <div class="modal"
+             v-show="getModalComponent"
+             :key="getModalComponent"
+             @click="closeModal"
+        >
+            <div @click.stop class="modal__content">
+                <component v-bind:is="getModalComponent"></component>
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
+import PackagePopup from '../molecules/PackagePopup';
 
 export default {
     name: 'Modal',
-    props: {
-        showModal: {
-            type: Boolean,
-            default: false
-        }
+    components: {
+        PackagePopup
     },
     methods: {
-        ...mapMutations({
-            setShowModal: 'modal/setShowModal'
-        }),
+        ...mapMutations('modal', ['closeModal'])
+    },
 
-        closeModal() {
-            this.setShowModal({ show: false });
-        }
-    }
+    computed: {
+        ...mapGetters('modal', ['getModalComponent'])
+    },
 }
 </script>
 
@@ -35,7 +37,7 @@ export default {
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     position: fixed;
 

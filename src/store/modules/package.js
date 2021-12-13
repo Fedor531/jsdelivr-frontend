@@ -12,7 +12,7 @@ export const xpackage = {
     }),
 
     getters: {
-        getPackages(state) {
+        packages(state) {
             const activePage = +router.currentRoute.value.query.page;
             let firstValue = 0;
             let secondValue = 10;
@@ -42,22 +42,25 @@ export const xpackage = {
             return state.packages.slice(firstValue, secondValue);
         },
 
-        getTotalPages(state) {
+        totalPages(state) {
             return state.totalPages;
         },
 
-        getSearchId(state) {
+        searchId(state) {
             return state.searchId;
         }
     },
 
     mutations: {
         setPackages(state, packages) {
-            state.packages = packages;
+            state.packages = packages.map((item, index) => ({
+                ...item.package,
+                id: index + 1
+            }));
         },
 
-        setTotalPages(state, totalPages) {
-            state.totalPages = totalPages;
+        setTotalPages(state, totalResults) {
+            state.totalPages = Math.ceil(Math.min(state.requestSize, totalResults) / state.pageSize);
         },
 
         setSearchId(state, id) {
@@ -84,12 +87,7 @@ export const xpackage = {
                     }
                 });
 
-                const totalPages = Math.ceil(Math.min(state.requestSize, response.data.total) / state.pageSize);
-
-                const packages = response.data.results.map((item, index) => ({
-                    ...item.package,
-                    id: index + 1
-                }))
+                const packages = response.data.results;
 
                 if (!packages.length) {
                     commit('setAlertText', 'Ничего не найдено');
@@ -98,7 +96,7 @@ export const xpackage = {
                     commit('setAlertText', 'Начните искать');
                 }
 
-                commit('setTotalPages', totalPages);
+                commit('setTotalPages', response.data.total);
                 commit('setPackages', packages);
             }
             catch (e) {
