@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import tBody from '../molecules/tBody';
-import tHead from '../molecules/tHead';
+import tBody from './tBody';
+import tHead from './tHead';
 
 export default {
     name: 'ResultTable',

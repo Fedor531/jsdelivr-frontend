@@ -1,33 +1,14 @@
 <template>
-    <transition name="fade" mode="out-in">
-        <div v-if="packages.length" :key="searchId">
-            <Pagination :totalPages="totalPages"/>
-            <transition name="fade" mode="out-in">
-                <ResultTable :packages="packages" :key="$route.query.page"/>
-            </transition>
-        </div>
-        <div v-else>
-            {{ alertText }}
-        </div>
-    </transition>
+    <SearchResult/>
 </template>
 
 <script>
-import ResultTable from '../components/organisms/ResultTable';
-import Loader from '../components/atoms/Loader';
-import Pagination from '../components/molecules/Pagination';
-
-import { mapActions, mapGetters } from 'vuex';
+import SearchResult from '../components/organisms/SearchResult';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'Index',
-    components: { Pagination, Loader, ResultTable },
-
-    data() {
-        return {
-            alertText: 'Начните искать'
-        }
-    },
+    components: { SearchResult },
 
     methods: {
         ...mapActions({
@@ -44,14 +25,6 @@ export default {
             }
         }
     },
-
-    computed: {
-        ...mapGetters({
-            packages: 'package/getPackages',
-            totalPages: 'package/getTotalPages',
-            searchId: 'package/getSearchId'
-        })
-    }
 }
 </script>
 

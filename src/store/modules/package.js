@@ -7,7 +7,8 @@ export const xpackage = {
         packages: [],
         pageSize: 10, // Количество элементов выводимых за раз
         totalPages: null, // Количество страниц
-        requestSize: 50 // Максимальное количество объектов
+        requestSize: 50, // Максимальное количество объектов
+        alertText: 'Начните искать'
     }),
 
     getters: {
@@ -61,6 +62,10 @@ export const xpackage = {
 
         setSearchId(state, id) {
             state.searchId = id;
+        },
+
+        setAlertText(state, value) {
+            state.alertText = value;
         }
     },
 
@@ -70,7 +75,7 @@ export const xpackage = {
             const searchText = router.currentRoute.value.query.q;
 
             try {
-                const response = await axios.get('https://api.npms.io/v2/search', {
+                const response = await axios.get(process.env.VUE_APP_BASEURL, {
                     params: {
                         q: searchText,
                         size: state.requestSize
@@ -83,6 +88,13 @@ export const xpackage = {
                     ...item.package,
                     id: index + 1
                 }))
+
+                if (!packages.length) {
+                    commit('setAlertText', 'Ничего не найдено');
+                }
+                else {
+                    commit('setAlertText', 'Начните искать');
+                }
 
                 commit('setTotalPages', totalPages);
                 commit('setPackages', packages);
