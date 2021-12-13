@@ -13,15 +13,15 @@ export default {
     methods: {
         ...mapActions({
             searchPackages: 'package/searchPackages'
-        }),
+        })
     },
 
-    created() {
+     async created() {
         if (this.$route.query.q) {
-            this.searchPackages();
+            await this.searchPackages();
 
             if (!this.$route.query.page) {
-                this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: 1 } });
+                await this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: 1 } });
             }
         }
     },

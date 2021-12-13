@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'SearchForm',
@@ -27,16 +27,13 @@ export default {
         ...mapActions({
             searchPackages: 'package/searchPackages',
         }),
-        ...mapMutations({
-            setLoading: 'loader/setLoading'
-        }),
 
         // TODO
         async searchPackage() {
-            await this.$router.push({ path: this.$route.path, query: { q: this.search, page: 1 } })
-            this.setLoading(true);
-            await this.searchPackages(this.search);
-            this.setLoading(false);
+            if (this.search) {
+                await this.$router.push({ path: this.$route.path, query: { q: this.search, page: 1 } })
+                await this.searchPackages(this.search);
+            }
         }
     },
     computed: {

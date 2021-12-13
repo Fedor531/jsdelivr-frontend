@@ -71,7 +71,9 @@ export const xpackage = {
 
     actions: {
         async searchPackages({ state, commit }) {
+            commit('loader/setLoading', true, { root: true })
             commit('setSearchId', Date.now());
+
             const searchText = router.currentRoute.value.query.q;
 
             try {
@@ -101,6 +103,9 @@ export const xpackage = {
             }
             catch (e) {
                 console.log(e)
+            }
+            finally {
+                commit('loader/setLoading', false, { root: true })
             }
         },
     },

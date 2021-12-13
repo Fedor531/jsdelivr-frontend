@@ -4,7 +4,7 @@
         <th scope="row">{{ item.id }}</th>
         <td>{{ item.name }}</td>
         <td class="column author">
-            <a :href="item.author?.url">
+            <a :href="item.author?.url" target="_blank">
                 {{ item.author?.name ? item.author?.name : 'Нет данных' }}
             </a>
         </td>
