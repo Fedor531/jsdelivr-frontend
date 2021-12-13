@@ -6,7 +6,7 @@
                 <ResultTable :packages="packages" :key="$route.query.page"/>
             </transition>
         </div>
-        <div class="alert alert-primary" role="alert" v-else>
+        <div v-else class="alert" role="alert">
             {{ alertText }}
         </div>
     </transition>
@@ -36,5 +36,7 @@ export default {
     text-align: center;
     max-width: 300px;
     margin: 0 auto;
+    font-weight: 700;
+    font-size: 20px;
 }
 </style>

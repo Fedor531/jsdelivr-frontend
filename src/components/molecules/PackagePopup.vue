@@ -1,19 +1,72 @@
 <template>
-    <div class="package-popup">
-        <h3>{{ data.name }}</h3>
-        <h4>Описание</h4>
-        <div>{{ data.description }}</div>
-        <div>{{ data.date }}</div>
-        <div><a :href="data.author?.url">{{ data.author?.name }}</a></div>
-        <div>{{ data.version }}</div>
-    </div>
+    <table class="table">
+        <tHead :columns="columns"/>
+        <tbody>
+        <tr>
+            <td>{{ data.id }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.description }}</td>
+            <td>{{ data.author?.name }}</td>
+            <td>{{ data.date }}</td>
+            <td>{{ data.version }}</td>
+            <td>{{ data.links }}</td>
+        </tr>
+        </tbody>
+    </table>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import tHead from './tHead';
+import tBody from './tBody';
 
 export default {
     name: 'PackagePopup',
+    components: {
+        tHead,
+        tBody
+    },
+    data() {
+        return {
+            columns: [
+                {
+                    id: 1,
+                    title: 'id',
+                    key: 'id'
+                },
+                {
+                    id: 2,
+                    title: 'Название пакета',
+                    key: 'name'
+                },
+                {
+                    id: 3,
+                    title: 'Описание',
+                    key: 'description'
+                },
+                {
+                    id: 4,
+                    title: 'Автор',
+                    key: 'author'
+                },
+                {
+                    id: 5,
+                    title: 'Дата',
+                    key: 'date'
+                },
+                {
+                    id: 6,
+                    title: 'Версия',
+                    key: 'version'
+                },
+                {
+                    id: 7,
+                    title: 'Ссылки',
+                    key: 'links'
+                },
+            ]
+        }
+    },
     computed: {
         ...mapGetters({
             data: 'modal/getModalData'
