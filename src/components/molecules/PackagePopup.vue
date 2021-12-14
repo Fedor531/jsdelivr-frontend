@@ -45,18 +45,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.table {
-    thead {
-        tr {
-            th {
-                &:not(:first-child) {
-                    width: calc(100% / 5);
-                }
-            }
-        }
-    }
-}
-
 @media all and (max-width: 768px) {
     .table {
         .column {
