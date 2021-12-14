@@ -60,6 +60,10 @@ export default {
     thead {
         tr {
             th {
+                &:first-child {
+                    width: 6%;
+                }
+
                 &:not(:first-child) {
                     width: calc(100% / 3);
                 }
