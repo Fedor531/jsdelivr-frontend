@@ -19,4 +19,4 @@ npm run build
 ```
 npm run serve
 ```
-#### Ссылка gh-pages: https://fedor531.github.io/npm-search/
+#### Ссылка gh-pages: https://fedor531.github.io/jsdelivr-frontend/
