@@ -28,10 +28,9 @@ export default {
             searchPackages: 'package/searchPackages',
         }),
 
-        // TODO
         async searchPackage() {
             if (this.search) {
-                await this.$router.push({ path: this.$route.path, query: { q: this.search, page: 1 } })
+                await this.$router.push({ path: this.$route.path, query: { q: this.search, page: 1 } });
                 await this.searchPackages(this.search);
             }
         }
