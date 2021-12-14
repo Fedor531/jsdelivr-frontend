@@ -7,6 +7,11 @@
         >
             <div @click.stop class="modal__content">
                 <component v-bind:is="getModalComponent"></component>
+                <img class="modal__close"
+                     src="../../assets/images/close-button.svg"
+                     alt="close-button"
+                     @click="closeModal"
+                />
             </div>
         </div>
     </transition>
@@ -42,13 +47,23 @@ export default {
     position: fixed;
 
     &__content {
+        position: relative;
         padding: 20px;
         background-color: #fff;
         border-radius: 5px;
         margin: auto;
         min-height: 50px;
         min-width: 300px;
-        max-width: 1100px;
+        max-width: 800px;
+    }
+
+    &__close {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        cursor: pointer;
     }
 }
 </style>

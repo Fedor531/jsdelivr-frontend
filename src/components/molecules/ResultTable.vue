@@ -1,25 +1,19 @@
 <template>
-    <table class="table result-table">
+    <table class="table">
         <thead>
         <tr>
-            <th v-for="col in columns"
-                :key="col.key"
-            >
-                {{ col.title }}
-            </th>
+            <th class="column id">#</th>
+            <th class="column name">Название пакета</th>
+            <th class="column version">Версия</th>
+            <th class="column buttons"></th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="item in packages" :key="item.date">
-            <th>{{ item.id }}</th>
-            <td>{{ item.name }}</td>
-            <td>{{ item.version }}</td>
-            <td>
-                <a class="links__item" :href="item.links.npm" target="_blank">
-                    <img src="../../assets/images/npm-logo.svg" alt="npm-logo"/>
-                </a>
-            </td>
-            <td>
+            <td class="column id">{{ item.id }}</td>
+            <td class="column name">{{ item.name }}</td>
+            <td class="column version">{{ item.version }}</td>
+            <td class="column buttons">
                 <Button @click="open(item)">
                     Подробнее
                 </Button>
@@ -40,37 +34,6 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            columns: [
-                {
-                    id: 1,
-                    title: '#',
-                    key: '#'
-                },
-                {
-                    id: 2,
-                    title: 'Название пакета',
-                    key: 'name'
-                },
-                {
-                    id: 3,
-                    title: 'Версия',
-                    key: 'version'
-                },
-                {
-                    id: 4,
-                    title: 'Npm',
-                    key: 'Npm'
-                },
-                {
-                    id: 5,
-                    title: '',
-                    key: 'buttons'
-                }
-            ]
-        }
-    },
     methods: {
         ...mapMutations({
             openModal: 'modal/openModal'
@@ -88,7 +51,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.result-table {
+.table {
     background: #fff;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .08);
     border-radius: 5px !important;
@@ -98,36 +61,20 @@ export default {
         tr {
             th {
                 &:not(:first-child) {
-                    width: calc(100% / 4);
+                    width: calc(100% / 3);
                 }
             }
         }
     }
 }
 
-.links {
-    display: flex;
-
-    &__item {
-        width: 30px;
-        height: 30px;
-        display: block;
-
-        img {
-            width: 100%;
+@media all and (max-width: 768px) {
+    .table {
+        .column {
+            &.version {
+                display: none;
+            }
         }
     }
 }
 </style>
-
-<!--<td>-->
-<!--<a class="links__item" :href="item.links.repository" target="_blank">-->
-<!--    <img src="../../assets/images/github-logo.svg" alt="npm-github"/>-->
-<!--</a>-->
-<!--</td>-->
-
-<!--            <td class="column author">-->
-<!--                <a :href="item.author?.url" target="_blank">-->
-<!--                    {{ item.author?.name ? item.author?.name : 'Нет данных' }}-->
-<!--                </a>-->
-<!--            </td>-->
