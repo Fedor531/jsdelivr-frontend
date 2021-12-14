@@ -10,7 +10,7 @@
 <script>
 import Header from './components/organisms/Header';
 import Footer from './components/organisms/Footer';
-import Modal from './components/organisms/Modal';
+import Modal  from './components/organisms/Modal';
 
 export default {
     components: { Modal, Footer, Header }
