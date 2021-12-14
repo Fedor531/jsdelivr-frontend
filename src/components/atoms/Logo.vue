@@ -1,6 +1,6 @@
 <template>
     <h1 class="navbar-brand logo">
-        jsdelivr
+        Npm search
     </h1>
 </template>
 

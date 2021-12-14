@@ -1,18 +1,16 @@
 <template>
-    <div aria-label="...">
-        <ul class="pagination pagination-sm">
-            <li class="page-item"
-                :class="{'active': +$route.query.page === pageNumber}"
-                v-for="pageNumber in totalPages"
-                :key="pageNumber"
-                @click="setPage(pageNumber)"
-            >
-                <a class="page-link" href="#">
-                    {{ pageNumber }}
-                </a>
-            </li>
-        </ul>
-    </div>
+    <ul class="pagination">
+        <li class="page-item"
+            :class="{'active': +$route.query.page === pageNumber}"
+            v-for="pageNumber in totalPages"
+            :key="pageNumber"
+            @click="setPage(pageNumber)"
+        >
+            <a class="page-link" href="#">
+                {{ pageNumber }}
+            </a>
+        </li>
+    </ul>
 </template>
 
 <script>

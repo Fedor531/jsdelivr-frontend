@@ -9,21 +9,26 @@ import { mapActions } from 'vuex';
 export default {
     name: 'Index',
     components: { SearchResult },
-
     methods: {
         ...mapActions({
             searchPackages: 'package/searchPackages'
-        })
+        }),
+
+        async init() {
+            const searchText = this.$route.query.q;
+
+            if (searchText) {
+                await this.searchPackages(searchText);
+
+                if (!this.$route.query.page) {
+                    await this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: 1 } });
+                }
+            }
+        }
     },
 
      async created() {
-        if (this.$route.query.q) {
-            await this.searchPackages();
-
-            if (!this.$route.query.page) {
-                await this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: 1 } });
-            }
-        }
+        await this.init();
     },
 }
 </script>

@@ -1,19 +1,22 @@
-# jsdelivr-frontend
-
-## Project setup
+# Npm search
+#### Описание: SPA для поиска npm-пакетов. 
+#### Api: https://api-docs.npms.io/
+#### Технологии:
+* Vue 3
+* Vuex
+* Bootstrap 5
+* Scss
+#### Руководство
+* Установка зависимостей
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
+* Сборка проекта
 ```
 npm run build
 ```
-
-
-https://fedor531.github.io/jsdelivr-frontend/
+* Режим разработки
+```
+npm run serve
+```
+#### Ссылка gh-pages: https://fedor531.github.io/jsdelivr-frontend/

@@ -1,6 +1,6 @@
 <template>
     <table class="table">
-        <tHead :columns="columns"/>
+<!--        <tHead :columns="columns"/>-->
         <tbody>
         <tr>
             <td>{{ data.id }}</td>
@@ -17,15 +17,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import tHead from './tHead';
-import tBody from './tBody';
 
 export default {
     name: 'PackagePopup',
-    components: {
-        tHead,
-        tBody
-    },
     data() {
         return {
             columns: [

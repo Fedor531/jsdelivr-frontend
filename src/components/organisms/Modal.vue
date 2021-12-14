@@ -44,7 +44,7 @@ export default {
     &__content {
         padding: 20px;
         background-color: #fff;
-        border-radius: 12px;
+        border-radius: 5px;
         margin: auto;
         min-height: 50px;
         min-width: 300px;

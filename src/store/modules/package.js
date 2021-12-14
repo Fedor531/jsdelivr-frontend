@@ -3,43 +3,18 @@ import router from '../../router';
 
 export const xpackage = {
     state: () => ({
-        searchId: Date.now(),
+        searchId: Date.now(), // id поиска, чтобы обновлять компонент SearchResult
         packages: [],
-        pageSize: 10, // Количество элементов выводимых за раз
+        pageSize: 10, // Количество пакетов выводимых за раз
         totalPages: null, // Количество страниц
-        requestSize: 50, // Максимальное количество объектов
+        requestSize: 50, // Максимальное запршиваемых количество пакетов
         alertText: 'Начните искать'
     }),
 
     getters: {
         packages(state) {
             const activePage = +router.currentRoute.value.query.page;
-            let firstValue = 0;
-            let secondValue = 10;
-
-            // TODO
-            if (activePage === 1) {
-                firstValue = 0;
-                secondValue = 10;
-            }
-            else if (activePage === 2) {
-                firstValue = 10;
-                secondValue = 20;
-            }
-            else if (activePage === 3) {
-                firstValue = 20;
-                secondValue = 30;
-            }
-            else if (activePage === 4) {
-                firstValue = 30;
-                secondValue = 40;
-            }
-            else if (activePage === 5) {
-                firstValue = 40;
-                secondValue = 50;
-            }
-
-            return state.packages.slice(firstValue, secondValue);
+            return state.packages.slice((activePage - 1) * state.pageSize, activePage * state.pageSize);
         },
 
         totalPages(state) {
@@ -73,11 +48,9 @@ export const xpackage = {
     },
 
     actions: {
-        async searchPackages({ state, commit }) {
-            commit('loader/setLoading', true, { root: true })
+        async searchPackages({ state, commit }, searchText) {
+            commit('loader/setLoading', true, { root: true });
             commit('setSearchId', Date.now());
-
-            const searchText = router.currentRoute.value.query.q;
 
             try {
                 const response = await axios.get(process.env.VUE_APP_BASEURL, {

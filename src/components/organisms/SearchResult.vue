@@ -1,6 +1,9 @@
 <template>
     <transition name="fade" mode="out-in">
-        <div v-if="packages.length" :key="searchId">
+        <div class="result"
+             v-if="packages.length"
+             :key="searchId"
+        >
             <Pagination :totalPages="totalPages"/>
             <transition name="fade" mode="out-in">
                 <ResultTable :packages="packages" :key="$route.query.page"/>
@@ -32,6 +35,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.result {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .alert {
     text-align: center;
     max-width: 300px;
