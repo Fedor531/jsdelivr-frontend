@@ -44,7 +44,8 @@ export default {
                 componentName: 'PackagePopup',
                 modalData: item
             };
-            this.openModal(modalOptions)
+
+            this.openModal(modalOptions);
         }
     }
 }

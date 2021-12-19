@@ -2,41 +2,73 @@
     <header class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="container d-flex">
             <Logo class="me-auto"/>
-            <NavBar v-if="false" :navbar="navbar"/>
             <Loader class="header-loader" v-show="loading"/>
-            <SearchForm/>
+            <NavBar :navbar="getNavbar"/>
         </div>
     </header>
 </template>
 
 <script>
 import NavBar from '../molecules/NavBar';
-import SearchForm from '../molecules/SearchForm';
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'Header',
-    components: { SearchForm, NavBar },
-    data() {
-        return {
-            navbar: [
-                {
-                    id: 1,
-                    title: 'Главная',
-                    path: '/'
-                },
-                {
-                    id: 2,
-                    title: 'О проекте',
-                    path: '/about'
-                }
-            ]
-        }
-    },
+    components: { NavBar },
     computed: {
         ...mapGetters({
-            loading: 'loader/getLoading'
-        })
+            loading: 'loader/getLoading',
+            isAuth: 'auth/getAuth',
+            info: 'info/getInfo'
+        }),
+
+        getNavbar() {
+            if (this.isAuth) {
+                return [
+                    {
+                        id: 1,
+                        type: 'link',
+                        title: 'Главная',
+                        path: '/'
+                    },
+                    {
+                        id: 2,
+                        type: 'dropdown',
+                        title: this.info.name ?? 'Пользователь',
+                        links: [
+                            {
+                                id: 1,
+                                type: 'link',
+                                path: '/history',
+                                title: 'История поисков',
+                            },
+                            {
+                                id: 2,
+                                type: 'link',
+                                path: '/logout',
+                                title: 'Выйти',
+                            }
+                        ]
+                    }
+                ]
+            }
+            else {
+                return [
+                    {
+                        id: 1,
+                        type: 'link',
+                        title: 'Главная',
+                        path: '/'
+                    },
+                    {
+                        id: 2,
+                        type: 'link',
+                        title: 'Войти',
+                        path: '/login'
+                    }
+                ]
+            }
+        }
     }
 }
 </script>

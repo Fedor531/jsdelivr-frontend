@@ -1,14 +1,16 @@
 <template>
+    <SearchForm/>
     <SearchResult/>
 </template>
 
 <script>
 import SearchResult from '../components/organisms/SearchResult';
+import SearchForm from '../components/molecules/SearchForm';
 import { mapActions } from 'vuex';
 
 export default {
     name: 'Index',
-    components: { SearchResult },
+    components: { SearchForm, SearchResult },
     methods: {
         ...mapActions({
             searchPackages: 'package/searchPackages'
@@ -32,9 +34,4 @@ export default {
     },
 }
 </script>
-
-<style lang="scss">
-
-</style>
-
 

@@ -1,14 +1,13 @@
 <template>
-    <div>
-        О проекте
-    </div>
+    <h1>История поисков</h1>
 </template>
 
 <script>
 export default {
-    name: 'About'
+    name: 'History'
 }
 </script>
 
 <style scoped>
+
 </style>

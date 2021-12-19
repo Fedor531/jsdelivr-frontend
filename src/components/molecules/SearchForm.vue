@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="search-form">
         <fieldset class="d-flex" :disabled="loading">
             <Input v-model.trim="search"
                    placeholder="Поиск"
@@ -43,6 +43,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.search-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
 </style>

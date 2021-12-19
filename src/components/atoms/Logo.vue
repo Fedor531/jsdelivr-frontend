@@ -1,6 +1,8 @@
 <template>
     <h1 class="navbar-brand logo">
-        Npm search
+        <router-link to="/">
+            Npm search
+        </router-link>
     </h1>
 </template>
 
