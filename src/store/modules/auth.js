@@ -67,7 +67,6 @@ export const auth = {
                 })
             }
             catch (e) {
-                console.log(e.code);
                 commit('error/setError', e.code, { root: true });
                 throw e;
             }

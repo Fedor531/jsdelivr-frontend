@@ -25,7 +25,7 @@ import messages from '../../utils/messages';
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-    name: 'Toast',
+    name: 'ErrorToast',
 
     data() {
         return {

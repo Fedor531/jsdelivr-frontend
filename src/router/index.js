@@ -24,15 +24,17 @@ const routes = [
         path: '/login',
         name: 'Login',
         meta: {
-            layout: 'empty'
+            layout: 'empty',
         },
         component: () => import('../views/Login.vue')
     },
     {
         path: '/logout',
-        redirect: {
-            name: 'Login'
-        }
+        name: 'Logout',
+        meta: {
+            layout: 'empty',
+        },
+        component: () => import('../views/Login.vue')
     },
     {
         path: '/register',
@@ -55,7 +57,7 @@ router.beforeEach((to, from, next) => {
 
     // Если роут куда мы хотим требует авторизации и нет пользователя
     if (requireAuth && !currentUser) {
-        next('/login/?message=login');
+        next('/login');
     }
     else {
         next();

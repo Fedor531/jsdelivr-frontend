@@ -3,26 +3,44 @@
     <component :is="layout">
         <router-view></router-view>
     </component>
-    <Toast/>
+    <ErrorToast />
 </template>
 
 <script>
 import Header from './components/organisms/Header';
 import EmptyLayout from './layouts/EmptyLayout';
 import MainLayout from './layouts/MainLayout';
-import Toast from './components/organisms/Toast';
-import { mapActions } from "vuex";
+import ErrorToast from './components/organisms/ErrorToast';
+import { mapActions, mapMutations } from 'vuex';
+import firebase from 'firebase/compat/app';
 
 export default {
-    components: { Toast, Header, EmptyLayout, MainLayout },
+    components: { ErrorToast, Header, EmptyLayout, MainLayout },
     computed: {
         layout() {
             return this.$route.meta.layout + '-layout';
         }
     },
 
+    created() {
+        this.checkAuth();
+    },
+
     methods: {
-        ...mapActions('auth', ['logout'])
+        ...mapMutations('auth', ['setAuth']),
+        ...mapActions({
+            'logout': 'auth/logout',
+            'fetchInfo': 'info/fetchInfo'
+        }),
+
+        checkAuth() {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    this.setAuth(true);
+                    this.fetchInfo();
+                }
+            });
+        }
     },
 
     watch: {
