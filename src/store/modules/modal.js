@@ -1,8 +1,8 @@
-export const modal = {
-    state: () => ({
+export default {
+    state: {
         modalData: {},
         modalComponent: []
-    }),
+    },
 
     getters: {
         getModalComponent(state) {
@@ -19,7 +19,7 @@ export const modal = {
             state.modalData = modalData;
         },
         closeModal(state) {
-            state.modalComponent.splice(state.modalComponent.length - 1, 1)
+            state.modalComponent.splice(state.modalComponent.length - 1, 1);
         }
     },
 

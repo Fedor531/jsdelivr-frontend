@@ -1,15 +1,15 @@
 import axios from 'axios';
 import router from '../../router';
 
-export const xpackage = {
-    state: () => ({
+export default {
+    state: {
         searchId: Date.now(), // id поиска, чтобы обновлять компонент SearchResult
         packages: [],
         pageSize: 10, // Количество пакетов выводимых за раз
         totalPages: null, // Количество страниц
         requestSize: 50, // Максимальное запршиваемых количество пакетов
         alertText: 'Начните искать'
-    }),
+    },
 
     getters: {
         packages(state) {
@@ -48,7 +48,7 @@ export const xpackage = {
     },
 
     actions: {
-        async searchPackages({ state, commit }, searchText) {
+        async searchPackages({ state, commit, dispatch }, { searchText, addToHistory }) {
             commit('loader/setLoading', true, { root: true });
             commit('setSearchId', Date.now());
 
@@ -69,6 +69,13 @@ export const xpackage = {
                     commit('setAlertText', 'Начните искать');
                 }
 
+
+                const uid = await dispatch('auth/getUid', null, { root: true });
+
+                // Если пользователь авторизован и нужно добавлять в историю
+                if (uid && addToHistory) {
+                    await dispatch('history/addSearchItem', { searchText }, { root: true });
+                }
                 commit('setTotalPages', response.data.total);
                 commit('setPackages', packages);
             }

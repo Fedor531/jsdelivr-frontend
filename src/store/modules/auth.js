@@ -1,9 +1,9 @@
 import firebase from 'firebase/compat/app';
 
-export const auth = {
-    state: () => ({
+export default {
+    state: {
         isAuth: false
-    }),
+    },
 
     getters: {
         getAuth(state) {

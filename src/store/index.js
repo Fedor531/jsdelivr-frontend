@@ -1,10 +1,11 @@
 import { createStore } from 'vuex';
-import { xpackage } from './modules/package';
-import { loader } from './modules/loader';
-import { modal } from './modules/modal';
-import { auth } from './modules/auth';
-import { error } from './modules/error';
-import { info } from './modules/info';
+import xpackage from './modules/package';
+import loader   from './modules/loader';
+import modal    from './modules/modal';
+import auth     from './modules/auth';
+import error    from './modules/error';
+import info     from './modules/info';
+import history  from './modules/history'
 
 export default createStore({
     modules: {
@@ -13,6 +14,7 @@ export default createStore({
         modal,
         auth,
         error,
-        info
+        info,
+        history
     }
 })

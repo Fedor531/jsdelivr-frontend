@@ -1,7 +1,7 @@
-export const error = {
-    state: () => ({
+export default {
+    state: {
         error: null
-    }),
+    },
 
     getters: {
         getError(state) {

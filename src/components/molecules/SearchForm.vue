@@ -31,7 +31,7 @@ export default {
         async searchPackage() {
             if (this.search) {
                 await this.$router.push({ path: this.$route.path, query: { q: this.search, page: 1 } });
-                await this.searchPackages(this.search);
+                await this.searchPackages({ searchText: this.search, addToHistory: true });
             }
         }
     },

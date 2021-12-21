@@ -1,7 +1,7 @@
-export const loader = {
-    state: () => ({
+export default {
+    state: {
         loading: false
-    }),
+    },
 
     getters: {
         getLoading(state) {

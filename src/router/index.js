@@ -15,7 +15,7 @@ const routes = [
         path: '/history',
         name: 'History',
         meta: {
-            layout: 'empty',
+            layout: 'main',
             auth: true
         },
         component: () => import('../views/History.vue')

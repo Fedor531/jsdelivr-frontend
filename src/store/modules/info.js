@@ -1,9 +1,9 @@
 import firebase from 'firebase/compat/app';
 
-export const info = {
-    state: () => ({
+export default {
+    state: {
         info: {}
-    }),
+    },
 
     getters: {
         getInfo(state) {
@@ -24,10 +24,13 @@ export const info = {
         async fetchInfo({ dispatch, commit }) {
             try {
                 const uid = await dispatch('auth/getUid', null, { root: true });
+
                 const info = (await firebase.database().ref(`/users/${ uid }/info`).once('value')).val();
+
                 commit('setInfo', info);
             }
             catch (e) {
+                console.log(e);
                 throw e;
             }
         }
