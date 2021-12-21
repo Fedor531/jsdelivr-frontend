@@ -12,9 +12,7 @@ export default {
     name: 'Index',
     components: { SearchForm, SearchResult },
     methods: {
-        ...mapActions({
-            searchPackages: 'package/searchPackages'
-        }),
+        ...mapActions('package', ['searchPackages']),
 
         async init() {
             const searchText = this.$route.query.q;

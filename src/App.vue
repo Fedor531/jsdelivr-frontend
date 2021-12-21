@@ -3,7 +3,7 @@
     <component :is="layout">
         <router-view></router-view>
     </component>
-    <Toast />
+    <Toast/>
 </template>
 
 <script>
@@ -30,7 +30,6 @@ export default {
         async $route(e) {
             if (e.path === '/logout') {
                 await this.logout();
-                await this.$router.push('/login');
             }
         }
     }

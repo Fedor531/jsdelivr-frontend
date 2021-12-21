@@ -10,7 +10,7 @@
 
 <script>
 import NavBar from '../molecules/NavBar';
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'Header',

@@ -10,9 +10,6 @@
                     v-if="item.type === 'link'"
                     :to="item.path"
                     class="nav-link"
-                    :class="{
-                            'active': $route.path === item.path
-                           }"
                 >
                     {{ item.title }}
                 </router-link>
@@ -31,11 +28,12 @@
                     >
                         <li v-for="dropdown in item.links"
                             :key="dropdown.id">
-                            <a class="dropdown-item"
-                               :href="dropdown.path"
+                            <router-link
+                                class="dropdown-item"
+                                :to="dropdown.path"
                             >
                                 {{ dropdown.title }}
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </template>
