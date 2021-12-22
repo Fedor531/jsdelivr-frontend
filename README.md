@@ -23,4 +23,4 @@ npm run build
 ```
 npm run serve
 ```
-#### Ссылка gh-pages: https://fedor531.github.io/jsdelivr-frontend/
+#### Ссылка: https://npm-search-k2rsosa3g-fedor531.vercel.app/
