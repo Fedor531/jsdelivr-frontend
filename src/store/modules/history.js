@@ -39,6 +39,7 @@ export default {
         },
 
         async getSearchItems({ commit, dispatch }) {
+            commit('loader/setLoading', true, { root: true });
             try {
                 const uid = await dispatch('auth/getUid', null, { root: true });
 
@@ -49,6 +50,9 @@ export default {
             catch (e) {
                 commit('error/setError', e.code, { root: true });
                 throw e;
+            }
+            finally {
+                commit('loader/setLoading', false, { root: true });
             }
         },
 
