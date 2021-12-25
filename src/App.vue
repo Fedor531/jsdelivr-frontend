@@ -1,9 +1,14 @@
 <template>
-    <Header/>
-    <component :is="layout">
-        <router-view></router-view>
-    </component>
-    <ErrorToast />
+    <div class="main-loader"  v-if="!appLoaded">
+        <Loader />
+    </div>
+    <template v-else>
+        <Header/>
+        <component :is="layout">
+            <router-view></router-view>
+        </component>
+        <ErrorToast/>
+    </template>
 </template>
 
 <script>
@@ -16,6 +21,11 @@ import firebase from 'firebase/compat/app';
 
 export default {
     components: { ErrorToast, Header, EmptyLayout, MainLayout },
+    data() {
+        return {
+            appLoaded: false
+        }
+    },
     computed: {
         layout() {
             return this.$route.meta.layout + '-layout';
@@ -34,10 +44,15 @@ export default {
         }),
 
         checkAuth() {
-            firebase.auth().onAuthStateChanged((user) => {
+            firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {
                     this.setAuth(true);
-                    this.fetchInfo();
+                    await this.fetchInfo();
+
+                    this.appLoaded = true
+                }
+                else {
+                    this.appLoaded = true
                 }
             });
         }
@@ -53,3 +68,12 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="scss">
+.main-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+</style>
