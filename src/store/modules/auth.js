@@ -27,6 +27,7 @@ export default {
 
                 commit('setAuth', true);
                 dispatch('info/fetchInfo', null, { root: true });
+                commit('toast/setToast', { toast: 'login/success', toastType: 'success' }, { root: true });
             }
             catch (e) {
                 commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
@@ -46,6 +47,7 @@ export default {
 
                 commit('setAuth', false);
                 commit('info/clearInfo', true, { root: true });
+                commit('toast/setToast', { toast: 'logout', toastType: 'warning' }, { root: true });
             }
             catch (e) {
                 commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
