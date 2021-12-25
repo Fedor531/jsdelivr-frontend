@@ -1,5 +1,5 @@
 <template>
-    <div class="main-loader"  v-if="!appLoaded">
+    <div class="main-loader" v-if="!appLoaded">
         <Loader />
     </div>
     <template v-else>
@@ -7,20 +7,20 @@
         <component :is="layout">
             <router-view></router-view>
         </component>
-        <ErrorToast/>
+        <Toast/>
     </template>
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex';
+import firebase from 'firebase/compat/app';
 import Header from './components/organisms/Header';
 import EmptyLayout from './layouts/EmptyLayout';
 import MainLayout from './layouts/MainLayout';
-import ErrorToast from './components/organisms/ErrorToast';
-import { mapActions, mapMutations } from 'vuex';
-import firebase from 'firebase/compat/app';
+import Toast from './components/organisms/Toast';
 
 export default {
-    components: { ErrorToast, Header, EmptyLayout, MainLayout },
+    components: { Toast, Header, EmptyLayout, MainLayout },
     data() {
         return {
             appLoaded: false

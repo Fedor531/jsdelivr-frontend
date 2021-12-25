@@ -8,7 +8,6 @@ export default {
         pageSize: 10, // Количество пакетов выводимых за раз
         totalPages: null, // Количество страниц
         requestSize: 50, // Максимальное запршиваемых количество пакетов
-        alertText: 'Начните искать'
     },
 
     getters: {
@@ -40,15 +39,11 @@ export default {
 
         setSearchId(state, id) {
             state.searchId = id;
-        },
-
-        setAlertText(state, value) {
-            state.alertText = value;
         }
     },
 
     actions: {
-        async searchPackages({ state, commit, dispatch }, { searchText, addToHistory }) {
+        async searchPackages({ state, commit, dispatch }, { searchText }) {
             commit('loader/setLoading', true, { root: true });
             commit('setSearchId', Date.now());
 
@@ -63,19 +58,9 @@ export default {
                 const packages = response.data.results;
 
                 if (!packages.length) {
-                    commit('setAlertText', 'Ничего не найдено');
-                }
-                else {
-                    commit('setAlertText', 'Начните искать');
+                    commit('toast/setToast', { toast: 'search/not-found', toastType: 'error' }, { root: true });
                 }
 
-
-                const uid = await dispatch('auth/getUid', null, { root: true });
-
-                // Если пользователь авторизован и нужно добавлять в историю
-                if (uid && addToHistory) {
-                    await dispatch('history/addSearchItem', { searchText }, { root: true });
-                }
                 commit('setTotalPages', response.data.total);
                 commit('setPackages', packages);
             }

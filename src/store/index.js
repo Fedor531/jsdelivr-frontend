@@ -3,7 +3,7 @@ import xpackage from './modules/package';
 import loader   from './modules/loader';
 import modal    from './modules/modal';
 import auth     from './modules/auth';
-import error    from './modules/error';
+import toast    from './modules/toast';
 import info     from './modules/info';
 import history  from './modules/history'
 
@@ -13,7 +13,7 @@ export default createStore({
         package: xpackage,
         modal,
         auth,
-        error,
+        toast,
         info,
         history
     }

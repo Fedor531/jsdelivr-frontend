@@ -26,12 +26,19 @@ export default {
     methods: {
         ...mapActions({
             searchPackages: 'package/searchPackages',
+            addSearchItem: 'history/addSearchItem'
         }),
 
         async searchPackage() {
-            if (this.search) {
-                await this.$router.push({ path: this.$route.path, query: { q: this.search, page: 1 } });
-                await this.searchPackages({ searchText: this.search, addToHistory: true });
+            const searchText = this.search;
+
+            if (searchText) {
+                await this.$router.push({ path: this.$route.path, query: { q: searchText, page: 1 } });
+
+                // Ищем пакеты
+                await this.searchPackages({ searchText });
+                // Добавляем в историю
+                await this.addSearchItem({ searchText });
             }
         }
     },

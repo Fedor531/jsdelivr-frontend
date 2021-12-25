@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import NavBar from '../molecules/NavBar';
 import { mapGetters } from 'vuex';
+import NavBar from '../molecules/NavBar';
 
 export default {
     name: 'Header',

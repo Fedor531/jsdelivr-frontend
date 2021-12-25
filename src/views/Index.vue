@@ -18,7 +18,7 @@ export default {
             const searchText = this.$route.query.q;
 
             if (searchText) {
-                await this.searchPackages({ searchText, addToHistory: false });
+                await this.searchPackages({ searchText });
 
                 if (!this.$route.query.page) {
                     await this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: 1 } });

@@ -9,9 +9,6 @@
                 <ResultTable :packages="packages" :key="$route.query.page"/>
             </transition>
         </div>
-        <div v-else class="alert" role="alert">
-            {{ alertText }}
-        </div>
     </transition>
 </template>
 
@@ -26,9 +23,6 @@ export default {
     components: { Pagination, Loader, ResultTable },
 
     computed: {
-        ...mapState({
-            alertText: state => state.package.alertText,
-        }),
         ...mapGetters('package', ['packages', 'totalPages', 'searchId'])
     }
 }
@@ -36,8 +30,8 @@ export default {
 
 <style scoped lang="scss">
 .result {
-  max-width: 600px;
-  margin: 30px auto 0 auto;
+    max-width: 600px;
+    margin: 30px auto 0 auto;
 }
 
 .alert {

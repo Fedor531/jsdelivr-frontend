@@ -25,6 +25,10 @@ export default {
             try {
                 const uid = await dispatch('auth/getUid', null, { root: true });
 
+                if (!uid) {
+                    return;
+                }
+
                 const searchItem = {
                     title: searchText,
                     date: Date.now()
@@ -33,7 +37,7 @@ export default {
                 await firebase.database().ref(`/users/${ uid }/history`).push(searchItem);
             }
             catch (e) {
-                commit('error/setError', e.code, { root: true });
+                commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
                 throw e;
             }
         },
@@ -48,7 +52,7 @@ export default {
                 commit('setSearchItems', items);
             }
             catch (e) {
-                commit('error/setError', e.code, { root: true });
+                commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
                 throw e;
             }
             finally {
@@ -67,7 +71,7 @@ export default {
                 commit('setSearchItems', {});
             }
             catch (e) {
-                commit('error/setError', e.code, { root: true });
+                commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
                 throw e;
             }
             finally {

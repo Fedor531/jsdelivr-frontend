@@ -1,4 +1,5 @@
 import firebase from 'firebase/compat/app';
+import fA from "bootstrap-vue-3";
 
 export default {
     state: {
@@ -28,7 +29,8 @@ export default {
                 dispatch('info/fetchInfo', null, { root: true });
             }
             catch (e) {
-                commit('error/setError', e.code, { root: true });
+                commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
+                commit('setAuth', false);
                 throw e;
             }
             finally {
@@ -46,7 +48,7 @@ export default {
                 commit('info/clearInfo', true, { root: true });
             }
             catch (e) {
-                commit('error/setError', e.code, { root: true });
+                commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
                 throw e;
             }
             finally {
@@ -67,7 +69,7 @@ export default {
                 })
             }
             catch (e) {
-                commit('error/setError', e.code, { root: true });
+                commit('toast/setToast', { toast: e.code, toastType: 'error' }, { root: true });
                 throw e;
             }
             finally {
