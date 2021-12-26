@@ -27,12 +27,29 @@ export default {
         PackagePopup
     },
     methods: {
-        ...mapMutations('modal', ['closeModal'])
+        ...mapMutations('modal', ['closeModal']),
+
+        closeModalEscHandler(event) {
+            if (event.key === 'Escape') {
+                this.closeModal();
+            }
+        }
     },
 
     computed: {
         ...mapGetters('modal', ['getModalComponent'])
     },
+
+    watch: {
+        getModalComponent(activeModal) {
+            if (activeModal) {
+                document.addEventListener('keyup', this.closeModalEscHandler)
+            }
+            else {
+                document.removeEventListener('keyup', this.closeModalEscHandler)
+            }
+        }
+    }
 }
 </script>
 
