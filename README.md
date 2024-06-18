@@ -23,4 +23,4 @@ npm run build
 ```
 npm run serve
 ```
-#### Ссылка: https://npm-search-ozbx2trgk-fedor531.vercel.app/
+#### Ссылка: [https://npm-search-ozbx2trgk-fedor531.vercel.app/](https://npm-search-mvnsomkbg-fedor531.vercel.app/)
